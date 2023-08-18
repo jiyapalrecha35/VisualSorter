@@ -63,7 +63,7 @@ async function InsertionSort() {
             label1.innerText = label2.innerText;
             label2.innerText = tempLabel;
 
-            await new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise(resolve => setTimeout(resolve, 500));
 
             blocks[j + 1].style.transform = `translate(${(j + 1) * 30}px)`;
             blocks[j].style.transform = `translate(${j * 30}px)`;
@@ -84,7 +84,7 @@ async function InsertionSort() {
         
         container.removeChild(infoDisplay);
 
-        await new Promise(resolve => setTimeout(resolve, 200));
+        await new Promise(resolve => setTimeout(resolve, 600));
     }
 
     for (var k = 0; k < arr.length; k++) {

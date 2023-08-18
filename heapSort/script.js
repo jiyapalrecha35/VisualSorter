@@ -33,7 +33,7 @@ async function heapify(arr, blocks, n, i) {
     if (left < n && arr[left] > arr[largest]) {
         blocks[left].classList.add("comparing");
         document.getElementById("explanation").innerText = `Comparing ${arr[i]} with left child ${arr[left]}`;
-        await new Promise(resolve => setTimeout(resolve, 800));
+        await new Promise(resolve => setTimeout(resolve, 1000));
         blocks[left].classList.remove("comparing");
         largest = left;
         document.getElementById("comparisons").textContent = parseInt(document.getElementById("comparisons").textContent) + 1;
@@ -43,7 +43,7 @@ async function heapify(arr, blocks, n, i) {
     if (right < n && arr[right] > arr[largest]) {
         blocks[right].classList.add("comparing");
         document.getElementById("explanation").innerText = `Comparing ${arr[i]} with right child ${arr[right]}`;
-        await new Promise(resolve => setTimeout(resolve, 800));
+        await new Promise(resolve => setTimeout(resolve, 1000));
         blocks[right].classList.remove("comparing");
         largest = right;
         document.getElementById("comparisons").textContent = parseInt(document.getElementById("comparisons").textContent) + 1;
@@ -79,7 +79,7 @@ async function swap(arr, blocks, i, j) {
     document.getElementById("explanation").innerText = `Swapping ${arr[i]} with ${arr[j]}`;
 
 
-    await new Promise(resolve => setTimeout(resolve, 800));
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     blocks[i].classList.remove("swapping");
     blocks[j].classList.remove("swapping");
