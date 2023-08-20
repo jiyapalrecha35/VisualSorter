@@ -39,8 +39,29 @@
     font-weight: bold;
 }
 
+.comp,
+.swa {
+    width: 15px;
+    height: 15px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+}
+
+.txt {
+    margin-left: 20px;
+}
+
+.comp {
+    background-color: #7046fa;
+}
+
+.swa {
+    background-color: #f73c4f;
+}
+
 .comparing {
-    background-color: #35cdf7;
+    background-color: #7046fa;
     transition: background-color 0.3s ease;
 }
 
@@ -57,9 +78,9 @@
 }
 
 .stats {
-    margin-top: 0;
     position: absolute;
+    top: 0;
     right: 0;
     font-weight: 500;
-
+    padding: 20px;
 }

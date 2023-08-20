@@ -35,11 +35,10 @@ function generateArray() {
 
 async function InsertionSort() {
     var blocks = document.querySelectorAll('.block');
+    blocks[0].style.backgroundColor = "#13CE66";
     for (let i = 1; i < arr.length; i++) {
         let temp = arr[i];
         let j = i - 1;
-
-        blocks[i].style.backgroundColor = "#FF6B6B";  //highlight the current element
 
         var infoDisplay = document.createElement("div");
         infoDisplay.classList.add("info");
@@ -48,8 +47,8 @@ async function InsertionSort() {
 
         while (j >= 0 && arr[j] > temp) {
             // Highlight the compared elements
-            blocks[j].style.backgroundColor = "#FFD700"; 
-            blocks[j + 1].style.backgroundColor = "#FFD700"; 
+            blocks[j].style.backgroundColor = "#FFD700";
+            blocks[j + 1].style.backgroundColor = "#FFD700";
 
             var tempHeight = blocks[j].style.height;
             blocks[j].style.height = blocks[j + 1].style.height;
@@ -63,15 +62,15 @@ async function InsertionSort() {
             label1.innerText = label2.innerText;
             label2.innerText = tempLabel;
 
-            await new Promise(resolve => setTimeout(resolve, 500));
+            await new Promise(resolve => setTimeout(resolve, 400));
 
             blocks[j + 1].style.transform = `translate(${(j + 1) * 30}px)`;
             blocks[j].style.transform = `translate(${j * 30}px)`;
 
-            await new Promise(resolve => setTimeout(resolve, 500));
+            await new Promise(resolve => setTimeout(resolve, 400));
 
-            blocks[j].style.backgroundColor = "#7c52fa";
-            blocks[j + 1].style.backgroundColor = "#7c52fa";
+            blocks[j].style.backgroundColor = "#13CE66";
+            blocks[j + 1].style.backgroundColor = "#13CE66";
 
             j--;
         }
@@ -81,11 +80,16 @@ async function InsertionSort() {
         blocks[j + 1].style.height = `${temp * 3.4}px`;
         var sortedLabel = blocks[j + 1].querySelector(".block_id");
         sortedLabel.innerText = temp;
-        
+
         container.removeChild(infoDisplay);
 
         await new Promise(resolve => setTimeout(resolve, 600));
     }
+
+    var completeMessage = document.createElement("div");
+    completeMessage.classList.add("info");
+    completeMessage.innerText = "Sorting complete !";
+    container.appendChild(completeMessage);
 
     for (var k = 0; k < arr.length; k++) {
         blocks[k].style.backgroundColor = "#13CE66"; // Green color

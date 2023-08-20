@@ -40,41 +40,51 @@ async function SelectionSort() {
             }
         }
         swaps++;
+        if (min_index != i) //swapping only when the min_index has changed
+        {
+            blocks[i].style.backgroundColor = "#f5187f";
+            blocks[min_index].style.backgroundColor = "#f5187f";
+            await new Promise(resolve => setTimeout(resolve, 500));
 
-        // Highlight the elements being compared and swapped in red
-        blocks[i].style.backgroundColor = "#FF4949"; 
-        blocks[min_index].style.backgroundColor = "#FF4949"; 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+            var temp = arr[i];
+            arr[i] = arr[min_index];
+            arr[min_index] = temp;
 
-        var temp = arr[i];
-        arr[i] = arr[min_index];
-        arr[min_index] = temp;
+            // Update the heights of bars
+            blocks[i].style.height = `${arr[i] * 3.4}px`;
+            blocks[min_index].style.height = `${arr[min_index] * 3.4}px`;
 
-        // Update the heights of bars
-        blocks[i].style.height = `${arr[i] * 3.4}px`;
-        blocks[min_index].style.height = `${arr[min_index] * 3.4}px`;
+            var label1 = blocks[i].querySelector(".block_id");
+            var label2 = blocks[min_index].querySelector(".block_id");
+            var tempLabel = label1.innerText;
+            label1.innerText = label2.innerText;
+            label2.innerText = tempLabel;
 
-        var label1 = blocks[i].querySelector(".block_id");
-        var label2 = blocks[min_index].querySelector(".block_id");
-        var tempLabel = label1.innerText;
-        label1.innerText = label2.innerText;
-        label2.innerText = tempLabel;
+            blocks[i].style.transform = `translate(${i * 30}px)`;
+            blocks[min_index].style.transform = `translate(${min_index * 30}px)`;
 
-        blocks[i].style.transform = `translate(${i * 30}px)`;
-        blocks[min_index].style.transform = `translate(${min_index * 30}px)`;
 
-        // Reset the color of compared and swapped elements to green
-        blocks[i].style.backgroundColor = "#13CE66"; 
-        blocks[min_index].style.backgroundColor = "#13CE66"; 
+            blocks[i].style.backgroundColor = "#13CE66";
+            blocks[min_index].style.backgroundColor = "#c7b2fb";
 
-        swapsDisplay.innerText = `Iteration: ${i + 1} | Total number of swaps made: ${swaps}`;
-        await new Promise(resolve => setTimeout(resolve, 800));
+            swapsDisplay.innerText = `Iteration: ${i + 1} | Total number of swaps made: ${swaps}`;
+            await new Promise(resolve => setTimeout(resolve, 800));
+        }
+        else {
+            await new Promise(resolve => setTimeout(resolve, 400));
+            blocks[i].style.backgroundColor = "#13CE66";
+        }
     }
 
     // Change the color of blocks to green after sorting
     for (var k = 0; k < arr.length; k++) {
-        blocks[k].style.backgroundColor = "#13CE66"; 
+        blocks[k].style.backgroundColor = "#13CE66";
     }
+
+    var completeMessage = document.createElement("div");
+    completeMessage.classList.add("info");
+    completeMessage.innerText = "Sorting complete !";
+    container.appendChild(completeMessage);
 }
 
 generateArray();

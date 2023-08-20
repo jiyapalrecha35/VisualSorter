@@ -32,19 +32,24 @@ async function heapify(arr, blocks, n, i) {
 
     if (left < n && arr[left] > arr[largest]) {
         blocks[left].classList.add("comparing");
+        blocks[i].classList.add("comparing");
         document.getElementById("explanation").innerText = `Comparing ${arr[i]} with left child ${arr[left]}`;
         await new Promise(resolve => setTimeout(resolve, 1000));
         blocks[left].classList.remove("comparing");
+        blocks[i].classList.remove("comparing");
         largest = left;
         document.getElementById("comparisons").textContent = parseInt(document.getElementById("comparisons").textContent) + 1;
     }
+    
 
 
     if (right < n && arr[right] > arr[largest]) {
         blocks[right].classList.add("comparing");
+        blocks[i].classList.add("comparing");
         document.getElementById("explanation").innerText = `Comparing ${arr[i]} with right child ${arr[right]}`;
         await new Promise(resolve => setTimeout(resolve, 1000));
         blocks[right].classList.remove("comparing");
+        blocks[i].classList.remove("comparing");
         largest = right;
         document.getElementById("comparisons").textContent = parseInt(document.getElementById("comparisons").textContent) + 1;
     }
@@ -79,7 +84,7 @@ async function swap(arr, blocks, i, j) {
     document.getElementById("explanation").innerText = `Swapping ${arr[i]} with ${arr[j]}`;
 
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 1100));
 
     blocks[i].classList.remove("swapping");
     blocks[j].classList.remove("swapping");
@@ -89,6 +94,7 @@ async function swap(arr, blocks, i, j) {
 async function heapSort() {
     var blocks = document.querySelectorAll('.block');
     var n = arr.length;
+    
 
     for (var i = Math.floor(n / 2) - 1; i >= 0; i--) {
         await heapify(arr, blocks, n, i);
@@ -102,10 +108,9 @@ async function heapSort() {
 
     document.getElementById("explanation").innerText = "Sorting complete!";
     for (let i = 0; i < blocks.length; i++) {
-        blocks[i].style.backgroundColor = "#55bd2b";
+        blocks[i].style.backgroundColor = "#13CE66";
     }
 }
-
 
 generateArray();
 

@@ -12,6 +12,26 @@
     margin-bottom: 30px;
 }
 
+.sort, .unsort {
+    width: 15px;
+    height: 15px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+}
+
+.txt {
+    margin-left: 20px;
+}
+
+.sort {
+    background-color: #13CE66;
+}
+
+.unsort {
+    background-color: #c7b2fb;
+}
+
 #container {
     background-color: rgb(247, 245, 245);
     height: 500px;

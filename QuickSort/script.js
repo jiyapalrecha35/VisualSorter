@@ -25,14 +25,20 @@ function generateArray() {
         container.appendChild(arrElement);
     }
 }
+function clearExplanation() {
+    document.getElementById("explaination").innerText = "";
+    document.querySelector('.pivotDiv').innerText = "";
+}
 
 async function QuickSort() {
     var blocks = document.querySelectorAll('.block');
     await quickSort(arr, blocks, 0, arr.length - 1);
+    clearExplanation();
 
-    for (let i = 0; i < blocks.length; i++) {
-        blocks[i].style.backgroundColor = '#55bd2b';
-    }
+    var completeMessage = document.createElement("div");
+    completeMessage.classList.add("info");
+    completeMessage.innerText = "Sorting complete !";
+    container.appendChild(completeMessage);
 }
 
 async function quickSort(arr, blocks, left, right) {
@@ -64,27 +70,25 @@ async function swap(arr, blocks, i, j) {
     blocks[i].style.transform = `translateX(${i * 30}px)`;
     blocks[j].style.transform = `translateX(${j * 30}px)`;
 
-    document.getElementById("explaination").innerText = `Swapping ${arr[i]} with ${arr[j]}`; 
+    document.getElementById("explaination").innerText = `Swapping ${arr[i]} with ${arr[j]}`;
 
-    await new Promise(resolve => setTimeout(resolve, 400)); 
+    await new Promise(resolve => setTimeout(resolve, 400));
 
     blocks[i].classList.remove("swapping");
     blocks[j].classList.remove("swapping");
 
     await new Promise(resolve => setTimeout(resolve, 100));
 
-    // Reset block colors after swap animation
-    blocks[i].style.backgroundColor = '#55bd2b';
-    blocks[j].style.backgroundColor = '#55bd2b';
+    blocks[i].style.backgroundColor = '#c2b2fb';
+    blocks[j].style.backgroundColor = '#c2b2fb';
 }
 
 async function partition(arr, blocks, left, right) {
     var pivotDiv = document.querySelector('.pivotDiv');
     var pivot = arr[right];
 
-    // Reset block colors before highlighting pivot
     for (let k = left; k <= right; k++) {
-        blocks[k].style.backgroundColor = '#55bd2b';
+        blocks[k].style.backgroundColor = '#c2b2fb';
     }
 
     blocks[right].style.backgroundColor = 'yellow'; // Highlight the pivot
@@ -93,7 +97,7 @@ async function partition(arr, blocks, left, right) {
 
     var i = left - 1;
     for (let j = left; j < right; j++) {
-        if (arr[j] < pivot) {
+        if (arr[j] <= pivot) {
             i = i + 1;
             await swap(arr, blocks, i, j);
         }
@@ -103,12 +107,12 @@ async function partition(arr, blocks, left, right) {
     // Reset colors after partitioning
     for (let k = left; k <= right; k++) {
         if (k !== i + 1) {
-            blocks[k].style.backgroundColor = '#55bd2b'; // Reset to sorted color
+            blocks[k].style.backgroundColor = '#c2b2fb';
         }
     }
 
-    // Reset pivot color
-    blocks[right].style.backgroundColor = '#55bd2b';
+    // Resetting pivot color
+    blocks[right].style.backgroundColor = '#c2b2fb';
 
     return i + 1;
 }

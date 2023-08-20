@@ -39,14 +39,14 @@ async function BubbleSort() {
     container.appendChild(swapsDisplay);
 
     for (var i = 0; i < arr.length - 1; i++) {
-        var swapped = false; //for optimisation purpose
+        var swapped = false;
 
         for (var j = 0; j < arr.length - i - 1; j++) {
 
             blocks[j].style.backgroundColor = "#ff40ac";
             blocks[j + 1].style.backgroundColor = "#ff40ac";
 
-            await new Promise((resolve) => setTimeout(resolve, 400));
+            await new Promise((resolve) => setTimeout(resolve, 500));
 
             if (arr[j] > arr[j + 1]) {
 
@@ -55,7 +55,6 @@ async function BubbleSort() {
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
                 swaps++;
-
 
                 // Update the heights of bars
                 blocks[j].style.height = `${arr[j] * 3.4}px`;
@@ -80,7 +79,7 @@ async function BubbleSort() {
         }
 
         blocks[25 - i - 1].style.backgroundColor = "#13CE66";
-        //chnaging the color of the highest bars we get after every iteration
+        //changing the color of the highest bars we get after every iteration
 
         if (!swapped) {
             break;
@@ -91,10 +90,14 @@ async function BubbleSort() {
 
     // Change the color of blocks to green one by one after sorting
     for (var k = 0; k < arr.length; k++) {
-        blocks[k].style.backgroundColor = "#13CE66"; 
+        blocks[k].style.backgroundColor = "#13CE66";
     }
-}
 
+    var completeMessage = document.createElement("div");
+    completeMessage.classList.add("info");
+    completeMessage.innerText = "Sorting complete !";
+    container.appendChild(completeMessage);
+}
 
 generateArray();
 

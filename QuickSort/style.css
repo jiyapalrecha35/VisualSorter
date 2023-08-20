@@ -30,6 +30,13 @@
     transition: 0.2s all ease;
 }
 
+.info {
+    text-align: center;
+    margin: 30px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .block_id {
     position: absolute;
     color: black;
@@ -44,9 +51,7 @@
     right: 10px;
     font-size: 20px;
     margin-top: 10px;
-    font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    font-style: italic;
 
 }
 
