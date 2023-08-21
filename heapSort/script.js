@@ -1,22 +1,22 @@
-var container = document.getElementById("container");
-var arr = [];
+let container = document.getElementById("container");
+let arr = [];
 
 function generateArray() {
 
-    for (var i = 0; i < 25; i++) {
+    for (let i = 0; i < 25; i++) {
         let value = Math.ceil(Math.random() * 100);
         arr.push(value);
     }
 
-    for (var i = 0; i < 25; i++) {
+    for (let i = 0; i < 25; i++) {
         let value = arr[i];
 
-        var arrElement = document.createElement("div");
+        let arrElement = document.createElement("div");
         arrElement.classList.add("block");
         arrElement.style.height = `${value * 3}px`;
         arrElement.style.transform = `translateX(${i * 30}px)`;
 
-        var array_ele_label = document.createElement("label");
+        let array_ele_label = document.createElement("label");
         array_ele_label.classList.add("block_id");
         array_ele_label.innerText = value;
 
@@ -26,9 +26,9 @@ function generateArray() {
 }
 
 async function heapify(arr, blocks, n, i) {
-    var largest = i;
-    var left = 2 * i + 1;
-    var right = 2 * i + 2;
+    let largest = i;
+    let left = 2 * i + 1;
+    let right = 2 * i + 2;
 
     if (left < n && arr[left] > arr[largest]) {
         blocks[left].classList.add("comparing");
@@ -40,8 +40,6 @@ async function heapify(arr, blocks, n, i) {
         largest = left;
         document.getElementById("comparisons").textContent = parseInt(document.getElementById("comparisons").textContent) + 1;
     }
-    
-
 
     if (right < n && arr[right] > arr[largest]) {
         blocks[right].classList.add("comparing");
@@ -62,7 +60,7 @@ async function heapify(arr, blocks, n, i) {
 }
 
 async function swap(arr, blocks, i, j) {
-    var temp = arr[i];
+    let temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
 
@@ -72,9 +70,9 @@ async function swap(arr, blocks, i, j) {
     blocks[i].style.height = `${arr[i] * 3}px`;
     blocks[j].style.height = `${arr[j] * 3}px`;
 
-    var label1 = blocks[i].querySelector(".block_id");
-    var label2 = blocks[j].querySelector(".block_id");
-    var tempLabel = label1.innerText;
+    let label1 = blocks[i].querySelector(".block_id");
+    let label2 = blocks[j].querySelector(".block_id");
+    let tempLabel = label1.innerText;
     label1.innerText = label2.innerText;
     label2.innerText = tempLabel;
 
@@ -82,7 +80,6 @@ async function swap(arr, blocks, i, j) {
     blocks[i].style.transform = `translateX(${i * 30}px)`;
     blocks[j].style.transform = `translateX(${j * 30}px)`;
     document.getElementById("explanation").innerText = `Swapping ${arr[i]} with ${arr[j]}`;
-
 
     await new Promise(resolve => setTimeout(resolve, 1100));
 
@@ -92,15 +89,14 @@ async function swap(arr, blocks, i, j) {
 }
 
 async function heapSort() {
-    var blocks = document.querySelectorAll('.block');
-    var n = arr.length;
-    
+    let blocks = document.querySelectorAll('.block');
+    let n = arr.length;
 
-    for (var i = Math.floor(n / 2) - 1; i >= 0; i--) {
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
         await heapify(arr, blocks, n, i);
     }
 
-    for (var i = n - 1; i > 0; i--) {
+    for (let i = n - 1; i >= 0; i--) {
         await swap(arr, blocks, 0, i);
         document.getElementById("explanation").innerText = `Heapify the root at index 0 with size ${i}`;
         await heapify(arr, blocks, i, 0);

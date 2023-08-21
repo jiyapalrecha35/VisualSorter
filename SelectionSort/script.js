@@ -1,23 +1,23 @@
-var container = document.getElementById("container");
-var arr = [];
-var swaps = 0;
+let container = document.getElementById("container");
+let arr = [];
+let swaps = 0;
 
 function generateArray() {
     // Filling array with random values
-    for (var i = 0; i < 25; i++) {
+    for (let i = 0; i < 25; i++) {
         let value = Number(Math.ceil(Math.random() * 100));
         arr.push(value);
     }
 
-    for (var i = 0; i < 25; i++) {
+    for (let i = 0; i < 25; i++) {
         let value = arr[i];
 
-        var arrElement = document.createElement("div");
+        let arrElement = document.createElement("div");
         arrElement.classList.add("block");
         arrElement.style.height = `${value * 3.4}px`;
         arrElement.style.transform = `translate(${i * 30}px)`;
 
-        var array_ele_label = document.createElement("label");
+        let array_ele_label = document.createElement("label");
         array_ele_label.classList.add("block_id");
         array_ele_label.innerText = value;
 
@@ -27,11 +27,11 @@ function generateArray() {
 }
 
 async function SelectionSort() {
-    var swapsDisplay = document.createElement("div");
+    let swapsDisplay = document.createElement("div");
     swapsDisplay.classList.add("swaps");
     container.appendChild(swapsDisplay);
 
-    var blocks = document.querySelectorAll('.block');
+    let blocks = document.querySelectorAll('.block');
     for (let i = 0; i < arr.length - 1; i++) {
         let min_index = i;
         for (let j = i + 1; j < arr.length; j++) {
@@ -46,7 +46,7 @@ async function SelectionSort() {
             blocks[min_index].style.backgroundColor = "#f5187f";
             await new Promise(resolve => setTimeout(resolve, 500));
 
-            var temp = arr[i];
+            let temp = arr[i];
             arr[i] = arr[min_index];
             arr[min_index] = temp;
 
@@ -54,9 +54,9 @@ async function SelectionSort() {
             blocks[i].style.height = `${arr[i] * 3.4}px`;
             blocks[min_index].style.height = `${arr[min_index] * 3.4}px`;
 
-            var label1 = blocks[i].querySelector(".block_id");
-            var label2 = blocks[min_index].querySelector(".block_id");
-            var tempLabel = label1.innerText;
+            let label1 = blocks[i].querySelector(".block_id");
+            let label2 = blocks[min_index].querySelector(".block_id");
+            let tempLabel = label1.innerText;
             label1.innerText = label2.innerText;
             label2.innerText = tempLabel;
 
@@ -77,11 +77,11 @@ async function SelectionSort() {
     }
 
     // Change the color of blocks to green after sorting
-    for (var k = 0; k < arr.length; k++) {
+    for (let k = 0; k < arr.length; k++) {
         blocks[k].style.backgroundColor = "#13CE66";
     }
 
-    var completeMessage = document.createElement("div");
+    let completeMessage = document.createElement("div");
     completeMessage.classList.add("info");
     completeMessage.innerText = "Sorting complete !";
     container.appendChild(completeMessage);

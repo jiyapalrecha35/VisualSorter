@@ -1,14 +1,14 @@
-var container = document.getElementById("container");
-var arr = [];
-var swaps = 0;
+let container = document.getElementById("container");
+let arr = [];
+let swaps = 0;
 function generateArray() {
-    for (var i = 0; i < 25; i++) {
+    for (let i = 0; i < 25; i++) {
         let value = Number(Math.ceil(Math.random() * 100));
         arr.push(value);
     }
-    for (var i = 0; i < 25; i++) {
+    for (let i = 0; i < 25; i++) {
         let value = arr[i];
-        var arrElement = document.createElement("div");
+        let arrElement = document.createElement("div");
 
         // Adding class to the div created
         arrElement.classList.add("block");
@@ -18,7 +18,7 @@ function generateArray() {
         arrElement.style.transform = `translate(${i * 30}px)`;
 
         // Creating label element for displaying size of particular block
-        var array_ele_label = document.createElement("label");
+        let array_ele_label = document.createElement("label");
 
         //adding class to the created label
         array_ele_label.classList.add("block_id");
@@ -31,27 +31,26 @@ function generateArray() {
     }
 }
 
-
 async function BubbleSort() {
-    var blocks = document.querySelectorAll('.block');
-    var swapsDisplay = document.createElement("div");
+    let blocks = document.querySelectorAll('.block');
+    let swapsDisplay = document.createElement("div");
     swapsDisplay.classList.add("swaps");
     container.appendChild(swapsDisplay);
 
-    for (var i = 0; i < arr.length - 1; i++) {
-        var swapped = false;
+    for (let i = 0; i < arr.length - 1; i++) {
+        let swapped = false;
 
-        for (var j = 0; j < arr.length - i - 1; j++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
 
             blocks[j].style.backgroundColor = "#ff40ac";
             blocks[j + 1].style.backgroundColor = "#ff40ac";
 
-            await new Promise((resolve) => setTimeout(resolve, 500));
+            await new Promise((resolve) => setTimeout(resolve, 400));
 
             if (arr[j] > arr[j + 1]) {
 
                 //swapping in array
-                var temp = arr[j];
+                let temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
                 swaps++;
@@ -61,11 +60,11 @@ async function BubbleSort() {
                 blocks[j + 1].style.height = `${arr[j + 1] * 3.4}px`;
 
                 // Swap the labels on the bars
-                var label1 = blocks[j].querySelector(".block_id");
-                var label2 = blocks[j + 1].querySelector(".block_id");
-                var temp = label1.innerText;
+                let label1 = blocks[j].querySelector(".block_id");
+                let label2 = blocks[j + 1].querySelector(".block_id");
+                let tempLabel = label1.innerText;
                 label1.innerText = label2.innerText;
-                label2.innerText = temp;
+                label2.innerText = tempLabel;
 
                 // Update the transform property to reflect the new positions
                 blocks[j].style.transform = `translate(${j * 30}px)`;
@@ -74,10 +73,9 @@ async function BubbleSort() {
                 swapped = true;
             }
 
-            blocks[j].style.backgroundColor = "#7c52fa";
-            blocks[j + 1].style.backgroundColor = "#7c52fa";
+            blocks[j].style.backgroundColor = "#c7b2fb";
+            blocks[j + 1].style.backgroundColor = " #c7b2fb";
         }
-
         blocks[25 - i - 1].style.backgroundColor = "#13CE66";
         //changing the color of the highest bars we get after every iteration
 
@@ -89,18 +87,17 @@ async function BubbleSort() {
     }
 
     // Change the color of blocks to green one by one after sorting
-    for (var k = 0; k < arr.length; k++) {
+    for (let k = 0; k < arr.length; k++) {
         blocks[k].style.backgroundColor = "#13CE66";
     }
 
-    var completeMessage = document.createElement("div");
+    let completeMessage = document.createElement("div");
     completeMessage.classList.add("info");
     completeMessage.innerText = "Sorting complete !";
     container.appendChild(completeMessage);
 }
 
 generateArray();
-
 setTimeout(() => {
     BubbleSort();
 }, 2000); 

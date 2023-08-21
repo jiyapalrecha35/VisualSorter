@@ -1,5 +1,5 @@
-var container = document.getElementById("container");
-var arr = [];
+let container = document.getElementById("container");
+let arr = [];
 
 function generateArray() {
     for (let i = 0; i < 25; i++) {
@@ -10,12 +10,12 @@ function generateArray() {
     for (let i = 0; i < 25; i++) {
         let value = arr[i];
 
-        var arrElement = document.createElement("div");
+        let arrElement = document.createElement("div");
         arrElement.classList.add("block");
         arrElement.style.height = `${value * 3.4}px`;
         arrElement.style.transform = `translate(${i * 30}px)`;
 
-        var array_ele_label = document.createElement("label");
+        let array_ele_label = document.createElement("label");
         array_ele_label.classList.add("block_id");
         array_ele_label.innerText = value;
 
@@ -25,40 +25,32 @@ function generateArray() {
 }
 
 async function MergeSort() {
-    var blocks = document.querySelectorAll('.block');
+    let blocks = document.querySelectorAll('.block');
     await mergeSort(arr, blocks, 0, arr.length - 1);
-    
+
     displayMessage("Sorting is complete!");
 }
 
 async function mergeSort(arr, blocks, left, right) {
     if (left < right) {
-        displayMessage(`Dividing array from index ${left} to ${right}`);
+        await new Promise(resolve => setTimeout(resolve, 500));
+        await displayMessage(`Dividing array from index ${left} to ${right}`);
 
-        var mid = Math.floor((left + right) / 2);
-
-        for (let i = left; i <= right; i++) {
-            blocks[i].style.backgroundColor = "#ff40ac"; // Pink color for division
-            await new Promise((resolve) => setTimeout(resolve, 40));
-        }
+        let mid = Math.floor((left + right) / 2);
 
         await mergeSort(arr, blocks, left, mid);
         await mergeSort(arr, blocks, mid + 1, right);
 
         await merge(arr, blocks, left, mid, right);
-
-        for (let i = left; i <= right; i++) {
-            blocks[i].style.backgroundColor = "#7c52fa";
-        }
     }
 }
 
 async function merge(arr, blocks, left, mid, right) {
-    var p = mid - left + 1;
-    var q = right - mid;
+    let p = mid - left + 1;
+    let q = right - mid;
 
-    var L = new Array(p);
-    var R = new Array(q);
+    let L = new Array(p);
+    let R = new Array(q);
 
     for (let i = 0; i < p; i++) {
         L[i] = arr[left + i];
@@ -69,44 +61,45 @@ async function merge(arr, blocks, left, mid, right) {
 
     displayMessage(`Merging subarray from index ${left} to ${right}`);
 
-    var i = 0;
-    var j = 0;
-    var k = left;
+    let i = 0;
+    let j = 0;
+    let k = left;
 
     while (i < p && j < q) {
-        blocks[k].style.backgroundColor = "#ff40ac";
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        blocks[k].style.backgroundColor = "#13CE66";
+        await new Promise((resolve) => setTimeout(resolve, 300));
 
         if (L[i] <= R[j]) {
             arr[k] = L[i];
             blocks[k].style.height = `${arr[k] * 3.4}px`;
 
-            var label2 = blocks[k].querySelector(".block_id");
+            let label2 = blocks[k].querySelector(".block_id");
             label2.innerText = L[i];
 
-            await new Promise((resolve) => setTimeout(resolve, 500));
+            await new Promise((resolve) => setTimeout(resolve, 400));
             i++;
         } else {
             arr[k] = R[j];
             blocks[k].style.height = `${arr[k] * 3.4}px`;
 
-            var label2 = blocks[k].querySelector(".block_id");
+            let label2 = blocks[k].querySelector(".block_id");
             label2.innerText = R[j];
 
-            await new Promise((resolve) => setTimeout(resolve, 500));
+            await new Promise((resolve) => setTimeout(resolve, 400));
             j++;
         }
         k++;
     }
-
+    blocks[k].style.backgroundColor = "#13CE66";
     while (i < p) {
+
         arr[k] = L[i];
         blocks[k].style.height = `${arr[k] * 3.4}px`;
 
-        var label2 = blocks[k].querySelector(".block_id");
+        let label2 = blocks[k].querySelector(".block_id");
         label2.innerText = L[i];
 
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 400));
         i++;
         k++;
     }
@@ -115,19 +108,19 @@ async function merge(arr, blocks, left, mid, right) {
         arr[k] = R[j];
         blocks[k].style.height = `${arr[k] * 3.4}px`;
 
-        var label2 = blocks[k].querySelector(".block_id");
+        let label2 = blocks[k].querySelector(".block_id");
         label2.innerText = R[j];
 
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 400));
         j++;
         k++;
     }
-
-    displayMessage(`Merging of subarray from index ${left} to ${right} is complete`);
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    await displayMessage(`Merging of subarray from index ${left} to ${right} is complete`);
 }
 
-function displayMessage(message) {
-    var messageBox = document.getElementById("message");
+async function displayMessage(message) {
+    let messageBox = document.getElementById("message");
     messageBox.innerText = message;
 }
 

@@ -1,17 +1,17 @@
-var container = document.getElementById("container");
-var arr = [];
-var swaps = 0;
+let container = document.getElementById("container");
+let arr = [];
+let swaps = 0;
 function generateArray() {
-    for (var i = 0; i < 25; i++) {
+    for (let i = 0; i < 25; i++) {
 
         //generate a random value from 1 to 100 
         let value = Number(Math.ceil(Math.random() * 100));
         arr.push(value);
     }
 
-    for (var i = 0; i < 25; i++) {
+    for (let i = 0; i < 25; i++) {
         let value = arr[i];
-        var arrElement = document.createElement("div");
+        let arrElement = document.createElement("div");
 
         // Adding class to the div created
         arrElement.classList.add("block");
@@ -21,7 +21,7 @@ function generateArray() {
         arrElement.style.transform = `translate(${i * 30}px)`;
 
         // Creating label element for displaying number on bar
-        var array_ele_label = document.createElement("label");
+        let array_ele_label = document.createElement("label");
 
         //adding class to the created label
         array_ele_label.classList.add("block_id");
@@ -34,13 +34,13 @@ function generateArray() {
 }
 
 async function InsertionSort() {
-    var blocks = document.querySelectorAll('.block');
+    let blocks = document.querySelectorAll('.block');
     blocks[0].style.backgroundColor = "#13CE66";
     for (let i = 1; i < arr.length; i++) {
         let temp = arr[i];
         let j = i - 1;
 
-        var infoDisplay = document.createElement("div");
+        let infoDisplay = document.createElement("div");
         infoDisplay.classList.add("info");
         infoDisplay.innerText = `Inserting  ${temp}`;
         container.appendChild(infoDisplay);
@@ -50,15 +50,15 @@ async function InsertionSort() {
             blocks[j].style.backgroundColor = "#FFD700";
             blocks[j + 1].style.backgroundColor = "#FFD700";
 
-            var tempHeight = blocks[j].style.height;
+            let tempHeight = blocks[j].style.height;
             blocks[j].style.height = blocks[j + 1].style.height;
             blocks[j + 1].style.height = tempHeight;
 
             arr[j + 1] = arr[j];
 
-            var label1 = blocks[j].querySelector(".block_id");
-            var label2 = blocks[j + 1].querySelector(".block_id");
-            var tempLabel = label1.innerText;
+            let label1 = blocks[j].querySelector(".block_id");
+            let label2 = blocks[j + 1].querySelector(".block_id");
+            let tempLabel = label1.innerText;
             label1.innerText = label2.innerText;
             label2.innerText = tempLabel;
 
@@ -78,7 +78,7 @@ async function InsertionSort() {
         arr[j + 1] = temp;
 
         blocks[j + 1].style.height = `${temp * 3.4}px`;
-        var sortedLabel = blocks[j + 1].querySelector(".block_id");
+        let sortedLabel = blocks[j + 1].querySelector(".block_id");
         sortedLabel.innerText = temp;
 
         container.removeChild(infoDisplay);
@@ -86,12 +86,12 @@ async function InsertionSort() {
         await new Promise(resolve => setTimeout(resolve, 600));
     }
 
-    var completeMessage = document.createElement("div");
+    let completeMessage = document.createElement("div");
     completeMessage.classList.add("info");
     completeMessage.innerText = "Sorting complete !";
     container.appendChild(completeMessage);
 
-    for (var k = 0; k < arr.length; k++) {
+    for (let k = 0; k < arr.length; k++) {
         blocks[k].style.backgroundColor = "#13CE66"; // Green color
     }
 }

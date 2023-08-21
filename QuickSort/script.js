@@ -1,23 +1,23 @@
-var container = document.getElementById("container");
-var arr = [];
-var swaps = 0;
+let container = document.getElementById("container");
+let arr = [];
+let swaps = 0;
 
 function generateArray() {
     // Filling array with random values
-    for (var i = 0; i < 25; i++) {
+    for (let i = 0; i < 25; i++) {
         let value = Number(Math.ceil(Math.random() * 100));
         arr.push(value);
     }
 
-    for (var i = 0; i < 25; i++) {
+    for (let i = 0; i < 25; i++) {
         let value = arr[i];
 
-        var arrElement = document.createElement("div");
+        let arrElement = document.createElement("div");
         arrElement.classList.add("block");
         arrElement.style.height = `${value * 3.4}px`;
         arrElement.style.transform = `translate(${i * 30}px)`;
 
-        var array_ele_label = document.createElement("label");
+        let array_ele_label = document.createElement("label");
         array_ele_label.classList.add("block_id");
         array_ele_label.innerText = value;
 
@@ -31,18 +31,18 @@ function clearExplanation() {
 }
 
 async function QuickSort() {
-    var blocks = document.querySelectorAll('.block');
+    let blocks = document.querySelectorAll('.block');
     await quickSort(arr, blocks, 0, arr.length - 1);
     clearExplanation();
 
-    var completeMessage = document.createElement("div");
+    let completeMessage = document.createElement("div");
     completeMessage.classList.add("info");
     completeMessage.innerText = "Sorting complete !";
     container.appendChild(completeMessage);
 }
 
 async function quickSort(arr, blocks, left, right) {
-    var loc;
+    let loc;
     if (left < right) {
         loc = await partition(arr, blocks, left, right);
         await quickSort(arr, blocks, left, loc - 1);
@@ -51,7 +51,7 @@ async function quickSort(arr, blocks, left, right) {
 }
 
 async function swap(arr, blocks, i, j) {
-    var temp = arr[i];
+    let temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
 
@@ -61,9 +61,9 @@ async function swap(arr, blocks, i, j) {
     blocks[i].style.height = `${arr[i] * 3.4}px`;
     blocks[j].style.height = `${arr[j] * 3.4}px`;
 
-    var label1 = blocks[i].querySelector('.block_id');
-    var label2 = blocks[j].querySelector('.block_id');
-    var tempLabel = label1.innerText;
+    let label1 = blocks[i].querySelector('.block_id');
+    let label2 = blocks[j].querySelector('.block_id');
+    let tempLabel = label1.innerText;
     label1.innerText = label2.innerText;
     label2.innerText = tempLabel;
 
@@ -84,8 +84,8 @@ async function swap(arr, blocks, i, j) {
 }
 
 async function partition(arr, blocks, left, right) {
-    var pivotDiv = document.querySelector('.pivotDiv');
-    var pivot = arr[right];
+    let pivotDiv = document.querySelector('.pivotDiv');
+    let pivot = arr[right];
 
     for (let k = left; k <= right; k++) {
         blocks[k].style.backgroundColor = '#c2b2fb';
@@ -95,9 +95,9 @@ async function partition(arr, blocks, left, right) {
 
     pivotDiv.innerText = "Pivot element: " + pivot;
 
-    var i = left - 1;
+    let i = left - 1;
     for (let j = left; j < right; j++) {
-        if (arr[j] <= pivot) {
+        if (arr[j] < pivot) {
             i = i + 1;
             await swap(arr, blocks, i, j);
         }
